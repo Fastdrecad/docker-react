@@ -18,5 +18,6 @@ services:
       - .:/app
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - CI=true
     stdin_open: true
     command: ["npm", "run", "test:watch"]

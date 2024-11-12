@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build --no-cache -t fastdrecad/docker-react -f Dockerfile.dev .
+
+      - name: Run tests with coverage
+        run: docker run -e CI=true fastdrecad/docker-react npm test:watch -- --coverage --watchAll=false --collectCoverage=true
