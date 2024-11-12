@@ -18,3 +18,6 @@ jobs:
 
       - name: Run tests with coverage
         run: docker run -e CI=true fastdrecad/docker-react npm test:watch -- --coverage --watchAll=false --collectCoverage=true
+
+      - name: Deploy to Elastic Beanstalk
+        run: eb deploy docker-react-env --profile fastdrecad --region eu-west-2
